@@ -49,5 +49,10 @@ def worker(num):
         cont_none += verificar_jogada(matriz)
     '''print('Não foi possível fazer a jogada %d vezes' %cont_none)'''
 
-t = threading.Thread(target=worker, args=(6,))
-t.start()
+threads = []
+for i in range(2):
+    t = threading.Thread(target=worker, args=(6,))
+    threads.append(t)
+    t.start()
+for i in threads:
+    i.join()
