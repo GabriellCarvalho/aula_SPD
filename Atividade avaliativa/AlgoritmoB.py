@@ -49,13 +49,24 @@ def worker(num):
         cont_none += verificar_jogada(matriz)
     print('\nNão foi possível fazer a jogada %d vezes' %cont_none)
 
+a = int(input('entre com a'))
 
-threads = []
-for i in range(3):
-    t = threading.Thread(target=worker,args=(2,))
-    threads.append(t)
-    t.start()
+if (a == 3):
+    threads = []
+    for i in range(3):# 3 threads
+        t = threading.Thread(target=worker,args=(2,))
+        threads.append(t)
+        t.start()
 
-for i in threads:
-    i.join()
+    for i in threads:
+        i.join()
 
+elif (a == 6):
+    threads = []
+    for i in range(6):# 6 threads
+        t = threading.Thread(target=worker,args=(1,))
+        threads.append(t)
+        t.start()
+
+    for i in threads:
+        i.join()

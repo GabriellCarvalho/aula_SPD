@@ -2,9 +2,10 @@ import time
 import subprocess
 
 def tempo_exec(num):
-    
-    tempo_inicial = time.time()
+    cont = 0
+    media = 0
     for i in range(num):
+        tempo_inicial = time.time()
         p = subprocess.Popen(['python', 'AlgoritmoA.py'], 
                         stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
@@ -13,21 +14,41 @@ def tempo_exec(num):
 
         saida,_ = p.communicate()
 
-    tempo_final = time.time()
+        tempo_final = time.time()
+        cont = cont +  (tempo_final-tempo_inicial)
+    media = cont/num 
+    print('\nMedia do tempo de execução do algoritmoA: %f segundos' %media)
 
-    print('\nTempo de execução do algoritmoA de %d vezes: %f segundos' %(num, (tempo_final - tempo_inicial)))
-
-    tempo_inicial = time.time()
+    cont = 0
+    media = 0
     for i in range(num):
+        tempo_inicial = time.time()
         p = subprocess.Popen(['python', 'AlgoritmoB.py'], 
                         stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE,
                         text=True)
 
-        saida,_ = p.communicate()
-    tempo_final = time.time()
+        saida,_ = p.communicate('3')
+        tempo_final = time.time()
+        cont = cont +  (tempo_final-tempo_inicial) 
+    media = cont/num
+    print('\nMedia do tempo de execução do algoritmoB com 3 threads: %f segundos' %media)
+    
+    cont = 0
+    media = 0
+    for i in range(num):
+        tempo_inicial = time.time()
+        p = subprocess.Popen(['python', 'AlgoritmoB.py'], 
+                        stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        text=True)
 
-    print('\nTempo de execução do algoritmoB de %d vezes: %f segundos' %(num, (tempo_final - tempo_inicial)))
+        saida,_ = p.communicate('6')
+        tempo_final = time.time()
+        cont = cont +  (tempo_final-tempo_inicial) 
+    media = cont/num
+    print('\nMedia do tempo de execução do algoritmoB com 6 threads: %f segundos' %media)
     
 tempo_exec(50) 
