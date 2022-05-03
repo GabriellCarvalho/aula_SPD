@@ -23,7 +23,7 @@ def verificar_jogada(matriz):
                     direita = True
     if(cima == False and esquerda == False and baixo == False and direita == False):
         texto = 'NONE'
-        print(texto)
+        print('\n',texto)
         return 1
     if(baixo == True):
         texto += ' BAIXO'
@@ -34,7 +34,7 @@ def verificar_jogada(matriz):
     if(cima == True):
         texto += ' CIMA'
 
-    '''print(texto)'''
+    print('\n',texto)
     return 0
 
 def criar_matriz(m, n):
@@ -45,14 +45,17 @@ def worker(num):
     cont_none = 0
     for i in range(num):
         matriz = criar_matriz(4,4)
-        '''print(matriz)'''
+        print(matriz)
         cont_none += verificar_jogada(matriz)
-    '''print('Não foi possível fazer a jogada %d vezes' %cont_none)'''
+    print('\nNão foi possível fazer a jogada %d vezes' %cont_none)
+
 
 threads = []
-for i in range(2):
-    t = threading.Thread(target=worker, args=(6,))
+for i in range(3):
+    t = threading.Thread(target=worker,args=(2,))
     threads.append(t)
     t.start()
+
 for i in threads:
     i.join()
+

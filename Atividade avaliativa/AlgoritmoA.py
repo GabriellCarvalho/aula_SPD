@@ -32,7 +32,7 @@ def verificar_jogada(matriz):
     if(cima == True):
         texto += ' CIMA'
 
-    '''print(texto)'''
+    print(texto)
     return 0
 
 
@@ -47,13 +47,13 @@ matriz4 = criar_matriz(4, 4)
 matriz5 = criar_matriz(4, 4)
 matriz6 = criar_matriz(4, 4)
 
-""" print(matriz1)
+print(matriz1)
 print(matriz2)
 print(matriz3)
 print(matriz4)
 print(matriz5)
 print(matriz6)
- """
+
 cont_none = 0
 cont_none += verificar_jogada(matriz1)
 cont_none += verificar_jogada(matriz2)
@@ -62,4 +62,4 @@ cont_none += verificar_jogada(matriz4)
 cont_none += verificar_jogada(matriz5)
 cont_none += verificar_jogada(matriz6)
 
-'''print('Não foi possível fazer a jogada %d vezes' %cont_none)'''
+print('Não foi possível fazer a jogada %d vezes' %cont_none)
