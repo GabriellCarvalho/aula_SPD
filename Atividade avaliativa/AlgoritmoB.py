@@ -41,30 +41,38 @@ def criar_matriz(m, n):
     matriz = np.random.choice([0, 2, 4, 8, 16, 32], size=(m, n))
     return matriz
 
-def worker(num):
+def worker():
     cont_none = 0
-    for i in range(num):
-        matriz = criar_matriz(4,4)
-        print(matriz)
-        cont_none += verificar_jogada(matriz)
+    matriz = criar_matriz(4,4)
+    print(matriz)
+    cont_none += verificar_jogada(matriz)
     print('\nNão foi possível fazer a jogada %d vezes' %cont_none)
 
 a = int(input('entre com a'))
 
 if (a == 3):
     threads = []
-    for i in range(3):# 3 threads
-        t = threading.Thread(target=worker,args=(2,))
+    for i in range(3):
+        t = threading.Thread(target=worker)
         threads.append(t)
         t.start()
 
     for i in threads:
         i.join()
+    
+    for i in range(3):
+        t = threading.Thread(target=worker)
+        threads.append(t)
+        t.start()
+
+    for i in threads:
+        i.join()
+    
 
 elif (a == 6):
     threads = []
-    for i in range(6):# 6 threads
-        t = threading.Thread(target=worker,args=(1,))
+    for i in range(6):
+        t = threading.Thread(target=worker)
         threads.append(t)
         t.start()
 
