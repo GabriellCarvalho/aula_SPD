@@ -44,37 +44,22 @@ def criar_matriz(m, n):
 def worker():
     cont_none = 0
     matriz = criar_matriz(4,4)
-    print(matriz)
     cont_none += verificar_jogada(matriz)
+    print(matriz)
     print('\nNão foi possível fazer a jogada %d vezes' %cont_none)
 
 a = int(input('entre com a'))
 
 if (a == 3):
-    threads = []
     for i in range(3):
         t = threading.Thread(target=worker)
-        threads.append(t)
         t.start()
-
-    for i in threads:
-        i.join()
-    
+        
     for i in range(3):
         t = threading.Thread(target=worker)
-        threads.append(t)
         t.start()
-
-    for i in threads:
-        i.join()
-    
 
 elif (a == 6):
-    threads = []
     for i in range(6):
         t = threading.Thread(target=worker)
-        threads.append(t)
         t.start()
-
-    for i in threads:
-        i.join()
