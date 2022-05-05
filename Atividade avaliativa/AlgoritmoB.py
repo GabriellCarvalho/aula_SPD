@@ -42,9 +42,8 @@ def criar_matriz(m, n):
     return matriz
 
 def worker():
-    cont_none = 0
     matriz = criar_matriz(4,4)
-    cont_none += verificar_jogada(matriz)
+    cont_none = verificar_jogada(matriz)
     print(matriz)
     print('\nNão foi possível fazer a jogada %d vezes' %cont_none)
 
