@@ -1,5 +1,9 @@
 import numpy as np
 
+def criar_matriz(m, n):
+    matriz = np.random.choice([0, 2, 4, 8, 16, 32], size=(m, n))
+    return matriz
+
 def verificar_jogada(matriz):
     cima = False
     baixo = False
@@ -36,30 +40,15 @@ def verificar_jogada(matriz):
     return 0
 
 
-def criar_matriz(m, n):
-    matriz = np.random.choice([0, 2, 4, 8, 16, 32], size=(m, n))
-    return matriz
+def main():
+    
+    cont_none = 0
+    for i in range(6):
+        matriz = criar_matriz(4, 4)
+        cont_none += verificar_jogada(matriz)
+        print(matriz)
+    
+    print('Não foi possível fazer a jogada %d vezes' %cont_none)
 
-matriz1 = criar_matriz(4, 4)
-matriz2 = criar_matriz(4, 4)
-matriz3 = criar_matriz(4, 4)
-matriz4 = criar_matriz(4, 4)
-matriz5 = criar_matriz(4, 4)
-matriz6 = criar_matriz(4, 4)
-
-print(matriz1)
-print(matriz2)
-print(matriz3)
-print(matriz4)
-print(matriz5)
-print(matriz6)
-
-cont_none = 0
-cont_none += verificar_jogada(matriz1)
-cont_none += verificar_jogada(matriz2)
-cont_none += verificar_jogada(matriz3)
-cont_none += verificar_jogada(matriz4)
-cont_none += verificar_jogada(matriz5)
-cont_none += verificar_jogada(matriz6)
-
-print('Não foi possível fazer a jogada %d vezes' %cont_none)
+if __name__=='__main__':
+    main()

@@ -1,6 +1,10 @@
 import threading
 import numpy as np
 
+def criar_matriz(m, n):
+    matriz = np.random.choice([0, 2, 4, 8, 16, 32], size=(m, n))
+    return matriz
+
 def verificar_jogada(matriz):
     cima = False
     baixo = False
@@ -37,28 +41,42 @@ def verificar_jogada(matriz):
     print('\n',texto)
     return 0
 
-def criar_matriz(m, n):
-    matriz = np.random.choice([0, 2, 4, 8, 16, 32], size=(m, n))
-    return matriz
 
 def worker():
     matriz = criar_matriz(4,4)
-    cont_none = verificar_jogada(matriz)
     print(matriz)
-    print('\nNão foi possível fazer a jogada %d vezes' %cont_none)
+    cont_none = verificar_jogada(matriz)
 
-a = int(input('entre com a'))
 
-if (a == 3):
-    for i in range(3):
-        t = threading.Thread(target=worker)
-        t.start()
-        
-    for i in range(3):
-        t = threading.Thread(target=worker)
-        t.start()
+def exec(a):
 
-elif (a == 6):
-    for i in range(6):
-        t = threading.Thread(target=worker)
-        t.start()
+    if (a == 3):
+        threads = []
+        for i in range(3):
+            t = threading.Thread(target=worker)
+            threads.append(t)
+            t.start()
+        for i in threads:
+            i.join()
+
+        threads = []
+        for i in range(3):
+            t = threading.Thread(target=worker)
+            threads.append(t)
+            t.start()
+        for i in threads:
+            i.join()
+
+
+    if (a == 6):
+        threads = []
+        for i in range(6):
+            t = threading.Thread(target=worker)
+            threads.append(t)
+            t.start()
+        for i in threads:
+            i.join()
+
+if __name__ == '__main__':
+    a = int(input('entre com a'))
+    exec(a)
