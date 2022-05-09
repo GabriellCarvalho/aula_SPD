@@ -55,4 +55,4 @@ def tempo_exec(num):
     print('\nSpeedup 6 threads: ',speedup2)
 
 if __name__ == '__main__':
-    tempo_exec(50) 
+    tempo_exec(100) 

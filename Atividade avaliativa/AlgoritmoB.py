@@ -11,8 +11,8 @@ def verificar_jogada(matriz):
     esquerda = False
     direita = False
     texto = ''
-    for i in range(4):
-        for j in range(4):
+    for i in range(399):
+        for j in range(399):
             if(i != 0):
                 if(matriz[i][j] == matriz[i-1][j] or matriz[i-1][j] == 0):
                     cima = True
@@ -27,7 +27,7 @@ def verificar_jogada(matriz):
                     direita = True
     if(cima == False and esquerda == False and baixo == False and direita == False):
         texto = 'NONE'
-        print('\n',texto)
+        #print('\n',texto)
         return 1
     if(baixo == True):
         texto += ' BAIXO'
@@ -38,45 +38,37 @@ def verificar_jogada(matriz):
     if(cima == True):
         texto += ' CIMA'
 
-    print('\n',texto)
+    #print('\n',texto)
     return 0
 
 
-def worker():
-    matriz = criar_matriz(4,4)
-    print(matriz)
-    cont_none = verificar_jogada(matriz)
-
+def worker(num):
+    for i in range(num):
+        matriz = criar_matriz(400,400)
+        #print(matriz)
+        cont_none = verificar_jogada(matriz)
+        #print('Não foi possível fazer a jogada %d vezes' %cont_none)
 
 def exec(a):
 
     if (a == 3):
         threads = []
         for i in range(3):
-            t = threading.Thread(target=worker)
+            t = threading.Thread(target=worker, args=(2,))
             threads.append(t)
             t.start()
         for i in threads:
             i.join()
-
-        threads = []
-        for i in range(3):
-            t = threading.Thread(target=worker)
-            threads.append(t)
-            t.start()
-        for i in threads:
-            i.join()
-
 
     if (a == 6):
         threads = []
         for i in range(6):
-            t = threading.Thread(target=worker)
+            t = threading.Thread(target=worker, args=(1,))
             threads.append(t)
             t.start()
         for i in threads:
             i.join()
 
 if __name__ == '__main__':
-    a = int(input('entre com a'))
+    a = int(input('entre com a: '))
     exec(a)

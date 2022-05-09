@@ -10,8 +10,8 @@ def verificar_jogada(matriz):
     esquerda = False
     direita = False
     texto = ''
-    for i in range(4):
-        for j in range(4):
+    for i in range(399):
+        for j in range(399):
             if(i != 0):
                 if(matriz[i][j] == matriz[i-1][j] or matriz[i-1][j] == 0):
                     cima = True
@@ -36,7 +36,7 @@ def verificar_jogada(matriz):
     if(cima == True):
         texto += ' CIMA'
 
-    print(texto)
+    #print(texto)
     return 0
 
 
@@ -44,11 +44,11 @@ def main():
     
     cont_none = 0
     for i in range(6):
-        matriz = criar_matriz(4, 4)
+        matriz = criar_matriz(400, 400)
         cont_none += verificar_jogada(matriz)
-        print(matriz)
+        #print(matriz)
     
-    print('Não foi possível fazer a jogada %d vezes' %cont_none)
+    #print('Não foi possível fazer a jogada %d vezes' %cont_none)
 
 if __name__=='__main__':
     main()
