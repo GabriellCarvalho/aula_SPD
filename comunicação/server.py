@@ -1,6 +1,5 @@
 from xmlrpc.server import SimpleXMLRPCServer
 
-
 server = SimpleXMLRPCServer(("192.168.0.103", 9050), allow_none=True)
 users = []
 passwords = []
@@ -15,6 +14,11 @@ def get_passwords():
 def update_password(password, pos):
     del(passwords[pos])
     passwords.insert(pos, password)
+    save_password()
+
+def get_users_passwords():
+    users_passwords = dict(zip(users, passwords))
+    return users_passwords
 
 def save_password():
     user_password = dict(zip(users, passwords))
@@ -29,6 +33,7 @@ def save_password():
 server.register_function(set_password)
 server.register_function(get_passwords)
 server.register_function(update_password)
+server.register_function(get_users_passwords)
 server.register_function(save_password)
 
 server.register_introspection_functions()
