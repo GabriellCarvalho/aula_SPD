@@ -17,7 +17,10 @@ def update_password(password, pos):
     save_password()
 
 def get_users_passwords():
-    users_passwords = dict(zip(users, passwords))
+    users_passwords = ""
+    with open('arquivo.txt','r') as senhas:
+        for line in senhas:
+            users_passwords+= line
     return users_passwords
 
 def save_password():

@@ -1,5 +1,4 @@
-user:joao, password:123
-user:pedro, password:321
-user:ze, password:admin123
-user:maria, password:senha123
-user:ana, password:admin
+user:jose, password:123
+user:paulo, password:321
+user:ana, password:456
+user:maria, password:654
