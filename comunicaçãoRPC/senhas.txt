@@ -1,0 +1,4 @@
+user:jose, password:123
+user:paulo, password:321
+user:ana, password:456
+user:maria, password:654
